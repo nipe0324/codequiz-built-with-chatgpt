@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   # アカウント作成
-  get "/sign_up" => "clearance/users#new", as: "sign_up"
-  post "/users" => "clearance/users#create", as: "users"
+  get "/sign_up" => "users#new", as: "sign_up"
+  post "/users" => "users#create", as: "users"
 
   # ログイン・ログアウト
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"

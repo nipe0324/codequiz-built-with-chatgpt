@@ -12,9 +12,9 @@ ja:
       opening: "パスワード変更のリクエストを受け取りました: "
   flashes:
     failure_after_create: メールアドレスもしくはパスワードが誤っています
-    failure_after_update: Passwordが空欄です
+    failure_after_update: パスワードが空欄です
     failure_when_forbidden: もう一度URLをご確認いただくか、再度登録をお試しください。
-    failure_when_not_signed_in: サインインを続けてください。
+    failure_when_not_signed_in: ログインを続けてください。
   helpers:
     label:
       password:
@@ -25,6 +25,7 @@ ja:
         email: メールアドレス
         password: パスワード
       user:
+        name: ユーザ名
         email: メールアドレス
         password: パスワード
     submit:
@@ -33,12 +34,12 @@ ja:
       password_reset:
         submit: パスワードを保存する
       session:
-        submit: サインイン
+        submit: ログイン
       user:
-        create: サインアップ
+        create: ユーザ登録
   layouts:
     application:
-      sign_in: サインイン
+      sign_in: ログイン
       sign_out: サインアウト
   passwords:
     create:
@@ -51,12 +52,11 @@ ja:
         メールアドレスを入力してください。
       title: パスワードのリセット
   sessions:
-    form:
-      forgot_password: パスワードをお忘れですか？
-      sign_up: サインアップ
     new:
-      title: サインイン
+      title: ログイン
+      forgot_password: パスワードをお忘れですか？
+      sign_up: ユーザ登録
   users:
     new:
-      sign_in: サインイン
-      title: サインアップ
+      sign_in: ログイン
+      title: ユーザ登録

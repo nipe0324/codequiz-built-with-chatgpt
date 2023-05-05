@@ -1,0 +1,13 @@
+<header class="bg-blue-600 text-white py-4">
+  <div class="container mx-auto px-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Code Quiz</h1>
+    <nav>
+      <% if signed_in? %>
+        <%= current_user.name %>
+        <%= button_to "ログアウト", sign_out_path, method: :delete %>
+      <% else %>
+        <%= link_to "ログイン", sign_in_path %>
+      <% end %>
+    </nav>
+  </div>
+</header>
