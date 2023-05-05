@@ -12,14 +12,18 @@
 default: &default
   adapter: mysql2
   encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_0900_as_cs
+  reconnect: false
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
-  host: localhost
+  host: 127.0.0.1
 
 development:
   <<: *default
   database: codequiz_built_with_chatgpt_development
+  password: password123
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -27,6 +31,7 @@ development:
 test:
   <<: *default
   database: codequiz_built_with_chatgpt_test
+  password: password123
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
