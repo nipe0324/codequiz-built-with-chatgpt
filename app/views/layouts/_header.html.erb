@@ -6,7 +6,8 @@
         <%= current_user.name %>
         <%= button_to "ログアウト", sign_out_path, method: :delete %>
       <% else %>
-        <%= link_to "ログイン", sign_in_path %>
+        <%= link_to "ログイン", sign_in_path %> |
+        <%= link_to "ユーザ登録", sign_up_path %>
       <% end %>
     </nav>
   </div>

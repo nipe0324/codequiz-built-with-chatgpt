@@ -20,7 +20,7 @@ ja:
       password:
         email: メールアドレス
       password_reset:
-        password: パスワードを登録してください
+        password: 新しいパスワード
       session:
         email: メールアドレス
         password: パスワード
