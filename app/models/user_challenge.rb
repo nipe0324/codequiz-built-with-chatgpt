@@ -9,6 +9,13 @@ class UserChallenge < ApplicationRecord
   validate :correct_quizzes_less_than_or_equal_to_total_quizzes
   validate :current_quizzes_less_than_or_equal_to_total_quizzes
 
+  def start
+    self.total_quizzes = 5
+    self.correct_quizzes = 0
+    self.current_quizzes = 0
+    save
+  end
+
   private
 
   def correct_quizzes_less_than_or_equal_to_total_quizzes

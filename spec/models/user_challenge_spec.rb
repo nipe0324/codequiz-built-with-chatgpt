@@ -54,4 +54,21 @@ RSpec.describe UserChallenge, type: :model do
       end
     end
   end
+
+  describe '#start' do
+    let(:user_challenge) { build(:user_challenge) }
+
+    it 'creates a new user challenge' do
+      expect { user_challenge.start }.to change(UserChallenge, :count).by(1)
+    end
+
+    it 'sets total_quizzes to 5, correct_quizzes to 0 and current_quizzes to 0' do
+      user_challenge.start
+
+      user_challenge.reload
+      expect(user_challenge.total_quizzes).to eq 5
+      expect(user_challenge.correct_quizzes).to eq 0
+      expect(user_challenge.current_quizzes).to eq 0
+    end
+  end
 end
