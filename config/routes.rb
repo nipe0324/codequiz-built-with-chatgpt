@@ -20,5 +20,7 @@ Rails.application.routes.draw do
   namespace :quiz do
     # カテゴリ・難易度選択
     resource :selection, only: [:show, :create]
+    # クイズ画面
+    resources :challenge, only: :show
   end
 end

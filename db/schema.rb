@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_042957) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_06_063720) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -25,6 +25,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_042957) do
     t.index ["name"], name: "index_difficulties_on_name", unique: true
   end
 
+  create_table "user_challenges", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "category_id", null: false
+    t.bigint "difficulty_id", null: false
+    t.integer "total_quizzes", null: false
+    t.integer "correct_quizzes", null: false
+    t.integer "current_quizzes", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_user_challenges_on_category_id"
+    t.index ["difficulty_id"], name: "index_user_challenges_on_difficulty_id"
+    t.index ["user_id"], name: "index_user_challenges_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -35,4 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_042957) do
     t.string "remember_token", limit: 128, null: false
   end
 
+  add_foreign_key "user_challenges", "categories"
+  add_foreign_key "user_challenges", "difficulties"
+  add_foreign_key "user_challenges", "users"
 end
