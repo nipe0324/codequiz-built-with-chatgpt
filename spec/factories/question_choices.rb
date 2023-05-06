@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :question_choice do
     association :question
-    sequence(:explanation) { |n| "Explanation #{n}" }
+    sequence(:content) { |n| "Content #{n}" }
 
     trait :correct do
       is_correct { true }

@@ -3,6 +3,6 @@ class Question < ApplicationRecord
   belongs_to :difficulty
   has_many :question_choices, dependent: :destroy
 
-  validates :question, presence: true
-  validates :explanation, presence: true
+  validates :content, presence: true
+  validates :answer, presence: true
 end

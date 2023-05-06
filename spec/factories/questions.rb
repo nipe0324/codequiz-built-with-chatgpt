@@ -2,9 +2,8 @@ FactoryBot.define do
   factory :question do
     association :category
     association :difficulty
-    creator { association(:user) }
-    sequence(:question) { |n| "Question #{n}" }
-    explanation { "Explanation" }
+    sequence(:content) { |n| "Content #{n}" }
+    sequence(:answer) { |n| "Answer #{n}" }
 
     trait :with_choices do
       after(:create) do |question|

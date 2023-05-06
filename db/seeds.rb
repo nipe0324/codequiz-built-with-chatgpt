@@ -26,26 +26,19 @@ end
 # Sample quiestions
 # TODO: Remove this later.
 
-[
-  { id: 1, category_id: 1, difficulty_id: 1, question: 'What does the following code output? 1', explanation: 'Explanation for question 1.' },
-  { id: 2, category_id: 1, difficulty_id: 1, question: 'What does the following code output? 2', explanation: 'Explanation for question 2.' },
-  { id: 3, category_id: 1, difficulty_id: 1, question: 'What does the following code output? 3', explanation: 'Explanation for question 3.' },
-  { id: 4, category_id: 1, difficulty_id: 1, question: 'What does the following code output? 4', explanation: 'Explanation for question 4.' },
-  { id: 5, category_id: 1, difficulty_id: 1, question: 'What does the following code output? 5', explanation: 'Explanation for question 5.' },
-].each do |question|
-  question = Question.find_or_create_by(id: question[:id]) do |q|
-    q.category = Category.find(question[:category_id])
-    q.difficulty = Difficulty.find(question[:difficulty_id])
-    q.question = question[:question]
-    q.explanation = question[:explanation]
+Category.all.to_a.product(Difficulty.all).each_with_index do |(category, difficulty), i|
+  question = Question.find_or_create_by(id: i + 1) do |q|
+    q.category = category
+    q.difficulty = difficulty
+    q.content = "#{category.name}の#{difficulty.name}のクエスチョン"
+    q.answer = "Answer #{i}"
   end
 
   next if question.question_choices.present?
 
   4.times do |i|
-    QuestionChoice.create!(
-      question: question,
-      explanation: "Choice #{i+1}.",
+    question.question_choices.create!(
+      content: "Choice #{i+1}.",
       is_correct: (i == 0)
     )
   end

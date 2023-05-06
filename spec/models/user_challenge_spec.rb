@@ -71,4 +71,23 @@ RSpec.describe UserChallenge, type: :model do
       expect(user_challenge.current_quizzes).to eq 0
     end
   end
+
+  describe "#select_question" do
+    let(:user_challenge) { create(:user_challenge) }
+
+    it "returns a question of same category and difficulty" do
+      question = create(:question, category: user_challenge.category, difficulty: user_challenge.difficulty)
+      _other_category_question = create(:question, difficulty: user_challenge.difficulty)
+      _other_difficulty_question = create(:question, category: user_challenge.category)
+
+      expect(user_challenge.select_question).to eq question
+    end
+
+    it "excludes questions that have already been answered", skip: "not implemented" do
+      question1 = FactoryBot.create(:question, category: user_challenge.category, difficulty: user_challenge.difficulty)
+      question2 = FactoryBot.create(:question, category: user_challenge.category, difficulty: user_challenge.difficulty)
+      user_challenge.question_choices.create(question_choice: question1.question_choices.first, is_correct: true)
+      expect(user_challenge.select_question).to eq(question2)
+    end
+  end
 end

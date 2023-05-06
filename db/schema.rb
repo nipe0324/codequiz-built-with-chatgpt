@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_090243) do
 
   create_table "question_choices", charset: "utf8mb4", collation: "utf8mb4_0900_as_cs", force: :cascade do |t|
     t.bigint "question_id", null: false
-    t.text "explanation", null: false
+    t.text "content", null: false
     t.boolean "is_correct", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,8 +37,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_090243) do
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_as_cs", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "difficulty_id", null: false
-    t.text "question", null: false
-    t.text "explanation", null: false
+    t.text "content", null: false
+    t.text "answer", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_questions_on_category_id"
