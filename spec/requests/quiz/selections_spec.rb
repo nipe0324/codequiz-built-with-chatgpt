@@ -64,6 +64,22 @@ RSpec.describe Quiz::SelectionsController, type: :request do
           expect(response).to redirect_to quiz_challenge_path(user_challenge)
         end
       end
+
+      context 'with invalid category and difficulty ids' do
+        let(:params) { { category_id: 999, difficulty_id: 999 } }
+
+        before { post quiz_selection_path(as: user), params: params }
+
+        it 'does not create a user_challenge record' do
+          expect(UserChallenge.count).to eq 0
+        end
+
+        it 'render quiz sellection page with warning message' do
+          expect(response).to have_http_status(:unprocessable_entity)
+          expect(response.body).to include("カテゴリー・難易度選択")
+          expect(response.body).to include("カテゴリーと難易度を選択してください。")
+        end
+      end
     end
 
     context "when user is not logged in" do
