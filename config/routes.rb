@@ -15,4 +15,10 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resource :password, controller: "clearance/passwords", only: [:edit, :update]
   end
+
+  # クイズ
+  namespace :quiz do
+    # カテゴリ・難易度選択
+    resource :selection, only: [:show, :create]
+  end
 end

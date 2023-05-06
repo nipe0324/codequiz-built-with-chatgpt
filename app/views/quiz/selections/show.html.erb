@@ -1,0 +1,32 @@
+<% content_for :title, "カテゴリ・難易度選択" %>
+
+<section class="container mx-auto px-4 py-8">
+  <div class="bg-white rounded-lg shadow p-8 text-center">
+    <h2 class="text-3xl mb-4">カテゴリー・難易度選択</h2>
+    <%= form_with url: quiz_selection_path, method: :post, local: true do %>
+      <div class="mb-6" id="categories">
+        <h3 class="text-xl mb-2">カテゴリー</h3>
+        <div class="grid grid-cols-3 gap-12">
+          <% @categories.each do |category| %>
+            <%= radio_button_tag 'category_id', category.id, false, id: "category_#{category.id}", class: "hidden" %>
+            <%= label_tag "category_#{category.id}", class: "cursor-pointer p-2 border border-blue-500 rounded" do %>
+              <div class="text-blue-500"><%= category.name %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="mb-12" id="difficulties">
+        <h3 class="text-xl mb-2">難易度</h3>
+        <div class="grid grid-cols-3 gap-12">
+          <% @difficulties.each do |difficulty| %>
+            <%= radio_button_tag 'difficulty_id', difficulty.id, false, id: "difficulty_#{difficulty.id}", class: "hidden" %>
+            <%= label_tag "difficulty_#{difficulty.id}", class: "cursor-pointer p-2 border border-blue-500 rounded" do %>
+              <div class="text-blue-500"><%= difficulty.name %></div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%= submit_tag 'クイズを始める', class: "bg-green-500 text-white font-bold py-3 px-6 rounded hover:bg-blue-700" %>
+    <% end %>
+  </div>
+</section>
