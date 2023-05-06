@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+input[type="radio"]:checked + label {
+  background-color: rgba(59, 130, 246, 0.1);
+}

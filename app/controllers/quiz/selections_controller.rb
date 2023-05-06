@@ -3,6 +3,8 @@ module Quiz
     before_action :require_login
 
     def show
+      @categories = Category.order(:id)
+      @difficulties = Difficulty.order(:id)
     end
 
     def create
