@@ -1,0 +1,19 @@
+<% content_for :title, "クイズ" %>
+
+<section class="container mx-auto px-4 py-8">
+  <div class="bg-white rounded-lg shadow p-8">
+    <h2 class="text-3xl font-bold mb-4">クイズ問題 No.1</h2>
+    <p class="mb-6">問題文: <%= @question.content %></p>
+    <form>
+      <% @question.question_choices.each do |choice| %>
+        <div class="mb-4">
+          <input type="radio" id="option1" name="quiz" class="form-radio text-blue-600">
+          <label for="option1" class="ml-2"><%= choice.content %></label>
+        </div>
+      <% end %>
+      <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded hover:bg-blue-700">
+        回答送信
+      </button>
+    </form>
+  </div>
+</section>

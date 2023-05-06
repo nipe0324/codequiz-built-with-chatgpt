@@ -16,6 +16,11 @@ class UserChallenge < ApplicationRecord
     save
   end
 
+  def select_question
+    # TODO: 回答済みの問題を除外する
+    Question.where(category: category, difficulty: difficulty).sample
+  end
+
   private
 
   def correct_quizzes_less_than_or_equal_to_total_quizzes
