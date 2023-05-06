@@ -4,7 +4,7 @@
   <div class="bg-white rounded-lg shadow p-8 text-center">
     <h2 class="text-3xl mb-4">カテゴリー・難易度選択</h2>
     <%= form_with url: quiz_selection_path, method: :post, local: true do %>
-      <div class="mb-6">
+      <div class="mb-6" id="categories">
         <h3 class="text-xl mb-2">カテゴリー</h3>
         <div class="grid grid-cols-3 gap-12">
           <% @categories.each do |category| %>
@@ -15,7 +15,7 @@
           <% end %>
         </div>
       </div>
-      <div class="mb-12">
+      <div class="mb-12" id="difficulties">
         <h3 class="text-xl mb-2">難易度</h3>
         <div class="grid grid-cols-3 gap-12">
           <% @difficulties.each do |difficulty| %>

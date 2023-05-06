@@ -56,4 +56,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # sign in through the backdoor
+  config.middleware.use Clearance::BackDoor
 end
