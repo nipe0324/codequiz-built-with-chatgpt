@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe Quiz::SelectionsController, type: :request do
-  describe "GET /quiz/selection" do
+RSpec.describe Quiz::ChallengesController, type: :request do
+  describe "GET /quiz/challenges" do
     context "when user is logged in" do
       let(:user) { create(:user) }
       let!(:categories) { create_list(:category, 3) }
       let!(:difficulties) { create_list(:difficulty, 3) }
 
       before do
-        get quiz_selection_path(as: user)
+        get new_quiz_challenge_path(as: user)
       end
 
       it "returns http success" do
@@ -29,7 +29,7 @@ RSpec.describe Quiz::SelectionsController, type: :request do
     end
 
     context "when user is not logged in" do
-      before { get quiz_selection_path }
+      before { get new_quiz_challenge_path }
 
       it "redirects to login page" do
         expect(response).to have_http_status(:redirect)
@@ -38,7 +38,7 @@ RSpec.describe Quiz::SelectionsController, type: :request do
     end
   end
 
-  describe "POST /quiz/selection" do
+  describe "POST /quiz/challenges" do
     context "when user is logged in" do
       let(:user) { create(:user) }
       let(:category) { create(:category) }
@@ -47,7 +47,7 @@ RSpec.describe Quiz::SelectionsController, type: :request do
       context 'with valid category and difficulty ids' do
         let(:params) { { category_id: category.id, difficulty_id: difficulty.id } }
 
-        before { post quiz_selection_path(as: user), params: params }
+        before { post quiz_challenges_path(as: user), params: params }
 
         it 'creates a user_challenge record' do
           expect(UserChallenge.count).to eq 1
@@ -61,14 +61,14 @@ RSpec.describe Quiz::SelectionsController, type: :request do
         it 'redirects to quiz_challenge page' do
           user_challenge = UserChallenge.last
           expect(response).to have_http_status(:redirect)
-          expect(response).to redirect_to quiz_challenge_path(user_challenge)
+          expect(response).to redirect_to quiz_challenge_questions_path(user_challenge)
         end
       end
 
       context 'with invalid category and difficulty ids' do
         let(:params) { { category_id: 999, difficulty_id: 999 } }
 
-        before { post quiz_selection_path(as: user), params: params }
+        before { post quiz_challenges_path(as: user), params: params }
 
         it 'does not create a user_challenge record' do
           expect(UserChallenge.count).to eq 0
@@ -87,7 +87,7 @@ RSpec.describe Quiz::SelectionsController, type: :request do
       let(:difficulty) { create(:difficulty) }
       let(:params) { { category_id: category.id, difficulty_id: difficulty.id } }
 
-      before { post quiz_selection_path(params) }
+      before { post quiz_challenges_path(params) }
 
       it "redirects to login page" do
         expect(response).to have_http_status(:redirect)

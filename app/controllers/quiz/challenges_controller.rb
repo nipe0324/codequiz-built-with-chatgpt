@@ -1,8 +1,8 @@
 module Quiz
-  class SelectionsController < ApplicationController
+  class ChallengesController < ApplicationController
     before_action :require_login
 
-    def show
+    def new
       @categories = Category.order(:id)
       @difficulties = Difficulty.order(:id)
     end
@@ -16,12 +16,12 @@ module Quiz
         @difficulties = Difficulty.order(:id)
 
         flash.now[:notice] = "カテゴリーと難易度を選択してください。"
-        return render :show, status: :unprocessable_entity
+        render :new, status: :unprocessable_entity
+      else
+        user_challenge = current_user.user_challenges.build(category: category, difficulty: difficulty)
+        user_challenge.start
+        redirect_to quiz_challenge_questions_path(user_challenge)
       end
-
-      user_challenge = current_user.user_challenges.build(category: category, difficulty: difficulty)
-      user_challenge.start
-      redirect_to quiz_challenge_path(user_challenge)
     end
   end
 end
