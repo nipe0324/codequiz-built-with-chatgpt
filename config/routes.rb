@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "top#index"
 
   # アカウント作成
   get "/sign_up" => "users#new", as: "sign_up"
@@ -14,6 +15,4 @@ Rails.application.routes.draw do
   resources :users, only: [] do
     resource :password, controller: "clearance/passwords", only: [:edit, :update]
   end
-
-  # root "articles#index"
 end
