@@ -6,10 +6,11 @@ FactoryBot.define do
     sequence(:question) { |n| "Question #{n}" }
     explanation { "Explanation" }
 
-    # trait :with_choices do
-    #   after(:create) do |question|
-    #     create_list(:question_choice, 4, question: question)
-    #   end
-    # end
+    trait :with_choices do
+      after(:create) do |question|
+        create_list(:question_choice, 1, :correct, question: question)
+        create_list(:question_choice, 3, :incorrect, question: question)
+      end
+    end
   end
 end

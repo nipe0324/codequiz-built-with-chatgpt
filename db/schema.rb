@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_06_085848) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_06_090243) do
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
@@ -23,6 +23,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_085848) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_difficulties_on_name", unique: true
+  end
+
+  create_table "question_choices", charset: "utf8mb4", collation: "utf8mb4_0900_as_cs", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.text "explanation", null: false
+    t.boolean "is_correct", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_choices_on_question_id"
   end
 
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_as_cs", force: :cascade do |t|
@@ -62,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_06_085848) do
     t.string "remember_token", limit: 128, null: false
   end
 
+  add_foreign_key "question_choices", "questions"
   add_foreign_key "questions", "categories"
   add_foreign_key "questions", "difficulties"
   add_foreign_key "questions", "users", column: "creator_id"
