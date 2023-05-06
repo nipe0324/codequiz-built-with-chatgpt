@@ -5,8 +5,8 @@
     </h1>
     <nav class="text-sm">
       <% if signed_in? %>
-        <%= current_user.name %>
-        <%= button_to "ログアウト", sign_out_path, method: :delete %>
+        <%= link_to current_user.name, '#', class: 'py-2 px-4 rounded hover:bg-blue-700 hover:opacity-90' %>
+        <%= link_to "ログアウト", sign_out_path, method: :delete, class: 'py-2 px-4 rounded hover:bg-blue-700 hover:opacity-90' %>
       <% else %>
         <%= link_to "ログイン", sign_in_path, class: 'py-2 px-4 rounded hover:bg-blue-700 hover:opacity-90' %>
         <%= link_to "ユーザ登録", sign_up_path, class: 'py-2 px-4 rounded hover:bg-blue-700 hover:opacity-90' %>
