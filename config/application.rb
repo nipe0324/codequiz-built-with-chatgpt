@@ -33,7 +33,9 @@ module CodequizBuiltWithChatgpt
 
     config.i18n.default_locale = :ja
 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
+    config.generators do |g|
+      g.helper false
+      g.view_specs false
+    end
   end
 end
